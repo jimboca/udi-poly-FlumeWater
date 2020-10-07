@@ -1,12 +1,10 @@
 
 # controller
-ND-controller-NAME = Template NodeServer Controller
+ND-controller-NAME = Flume Water NodeServer Controller
 CMD-ctl-QUERY-NAME = Query
-CMD-ctl-DISCOVER-NAME = Re-Discover
+CMD-ctl-DISCOVER-NAME = Discover
 CMD-ctl-UPDATE_PROFILE-NAME = Update Profile
-CMD-ctl-REMOVE_NOTICES_ALL-NAME = Remove All Notices
-CMD-ctl-REMOVE_NOTICE_TEST-NAME = Remove Notice Test
-CMD-ctl-SET_DM-NAME = Set Logger Level
+CCMD-ctl-SET_DM-NAME = Set Logger Level
 ST-ctl-ST-NAME = NodeServer Online
 ST-ctl-GV1-NAME = Logger Level
 
@@ -18,7 +16,14 @@ CDM-30 = Warning
 CDM-40 = Error
 CDM-50 = Critical
 
-# mynodetype
-ND-tmplnode-NAME = Template Node
-ST-tmplnode-ST-NAME = Node Status
+# flume1 node
+ND-flume1-NAME = Flume Water 1 Node
+ST-flume1-ST-NAME = Node Status
 CMD-tmplnode-PING-NAME = Ping
+ST-flume1-GV1-NAME = Current
+ST-flume1-GV2-NAME = Last 60 Min
+ST-flume1-GV3-NAME = Last 24 Hours
+ST-flume1-GV4-NAME = Last 30 Days
+ST-flume1-GV5-NAME = Today
+ST-flume1-GV6-NAME = Week To Date
+ST-flume1-GV7-NAME = Month To Date
