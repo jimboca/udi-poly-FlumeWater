@@ -1,5 +1,6 @@
 
 """ Node classes used by the Wireless Sensor Tags Node Server. """
 
-from .TemplateNode            import TemplateNode
-from .TemplateController      import TemplateController
+from .Flume1          import Flume1Node
+from .Flume2          import Flume2Node
+from .Controller      import Controller

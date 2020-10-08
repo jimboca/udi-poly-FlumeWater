@@ -10,7 +10,7 @@
   "shortPoll": "30",
   "longPoll": "240",
   "testMode": false,
-  "profile_version": None,
+  "profile_version": "2.0.0",
   "credits": [
     {
       "title": "flume: a NodeServer for Flume Water Monitor Integration",

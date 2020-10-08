@@ -16,7 +16,7 @@ from nodes import Controller
 
 if __name__ == "__main__":
     try:
-        polyglot = polyinterface.Interface('PythonTemplate')
+        polyglot = polyinterface.Interface('FlumeWater')
         """
         Instantiates the Interface to Polyglot.
         The name doesn't really matter unless you are starting it from the

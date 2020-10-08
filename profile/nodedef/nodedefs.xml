@@ -23,26 +23,41 @@
             </accepts>
         </cmds>
     </nodeDef>
-	<!-- templatenodeid -->
-    <nodeDef id="flume1" nls="flume1">
-        <editors />
-        <sts>
-            <st id="ST" editor="bool" />
-            <st id="GV1" editor="GALLONS"/>
-            <st id="GV2" editor="GALLONS"/>
-            <st id="GV3" editor="GALLONS"/>
-            <st id="GV4" editor="GALLONS"/>
-            <st id="GV5" editor="GALLONS"/>
-            <st id="GV6" editor="GALLONS"/>
-            <st id="GV7" editor="GALLONS"/>
-        </sts>
-        <cmds>
-            <sends />
-            <accepts>
-                <cmd id="DON" />
-                <cmd id="DOF" />
-                <cmd id="PING" />
-            </accepts>
-        </cmds>
-    </nodeDef>
+    <!-- Flume Hub -->
+      <nodeDef id="flume1" nls="flume1">
+          <editors />
+          <sts>
+              <st id="ST" editor="bool" />
+          </sts>
+          <cmds>
+              <sends />
+              <accepts>
+                  <cmd id="DON" />
+                  <cmd id="DOF" />
+                  <cmd id="PING" />
+              </accepts>
+          </cmds>
+      </nodeDef>
+      <!-- Flume Sensor -->
+        <nodeDef id="flume2" nls="flume2">
+            <editors />
+            <sts>
+                <st id="ST" editor="bool" />
+                <st id="GV1" editor="GALLONS"/>
+                <st id="GV2" editor="GALLONS"/>
+                <st id="GV3" editor="GALLONS"/>
+                <st id="GV4" editor="GALLONS"/>
+                <st id="GV5" editor="GALLONS"/>
+                <st id="GV6" editor="GALLONS"/>
+                <st id="GV7" editor="GALLONS"/>
+            </sts>
+            <cmds>
+                <sends />
+                <accepts>
+                    <cmd id="DON" />
+                    <cmd id="DOF" />
+                    <cmd id="PING" />
+                </accepts>
+            </cmds>
+        </nodeDef>
 </nodeDefs>
