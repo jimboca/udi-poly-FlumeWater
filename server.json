@@ -1,6 +1,6 @@
 {
   "name": "FlumeWater",
-  "docs": "https://github.com/jimboca/udi-poly-flume",
+  "docs": "https://github.com/jimboca/udi-poly-FlumeWater",
   "type": "python3",
   "executable": "flumewater-poly.py",
   "install": "install.sh",
