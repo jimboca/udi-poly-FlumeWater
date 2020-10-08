@@ -1,6 +1,6 @@
 {
     "name": "FlumeWater",
-    "docs": "https://github.com/JimBoCA/udi-poly-FlumeWater",
+    "docs": "https://github.com/jimboca/udi-poly-flumewater",
     "type": "python3",
     "executable": "flumewater-poly.py",
     "install": "install.sh",
@@ -19,8 +19,8 @@
             "author": "JimBoCA",
             "version": "2.0.0",
             "date": "Octorber 10, 2020",
-            "source": "https://github.com/JimBoCA/udi-poly-FlumeWater",
-            "license": "https://github.com/JimBoCA/udi-poly-FlumeWater/master/LICENSE"
+            "source": "https://github.com/jimboca/udi-poly-flumewater",
+            "license": "https://github.com/jimboca/udi-poly-flumewater/master/LICENSE"
         }
     ]
 }
