@@ -46,7 +46,7 @@ class Controller(Controller):
             serverdata['version'] = "FIXME_PGC"
             self.poly.installprofile()
         LOGGER.info('Started Template NodeServer {}'.format(serverdata['version']))
-        LOGGER.debug('ST=%s',self.getDriver('ST'))
+        #LOGGER.debug('ST=%s',self.getDriver('ST'))
         self.connecting = False
         self.connected  = False
         self.setDriver('ST', 1)
