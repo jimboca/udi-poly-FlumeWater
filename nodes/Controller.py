@@ -40,9 +40,9 @@ class Controller(Controller):
         # TODO: Currently fails on PGC
         try:
             serverdata = self.poly.get_server_data(check_profile=True)
-        except AttributeError as ex:
-            LOGGER.error(f'get_server_data failed, is this PGC?: {ex}')
-            serverdaa = {}
+        except Exception as ex:
+            LOGGER.error('get_server_data failed, is this PGC?: {}'.format(ex))
+            serverdata = {}
             serverdata['version'] = "FIXME_PGC"
             self.poly.installprofile()
         LOGGER.info('Started Template NodeServer {}'.format(serverdata['version']))
