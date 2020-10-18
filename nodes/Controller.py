@@ -42,7 +42,7 @@ class Controller(Controller):
             serverdata = self.poly.get_server_data(check_profile=True)
         except AttributeError as ex:
             LOGGER.error(f'get_server_data failed, is this PGC?: {ex}')
-            serverdata = "FIXME_PGC"
+            serverdata['version'] = "FIXME_PGC"
             self.poly.installprofile()
         LOGGER.info('Started Template NodeServer {}'.format(serverdata['version']))
         LOGGER.debug('ST=%s',self.getDriver('ST'))
