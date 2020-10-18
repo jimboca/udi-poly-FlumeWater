@@ -37,7 +37,13 @@ class Controller(Controller):
         #self.poly.onConfig(self.process_config)
 
     def start(self):
-        serverdata = self.poly.get_server_data(check_profile=True)
+        # TODO: Currently fails on PGC
+        try:
+            serverdata = self.poly.get_server_data(check_profile=True)
+        except AttributeError as ex:
+            LOGGER.error(f'get_server_data failed, is this PGC?: {ex}')
+            serverdata = "FIXME_PGC"
+            self.poly.installprofile()
         LOGGER.info('Started Template NodeServer {}'.format(serverdata['version']))
         LOGGER.debug('ST=%s',self.getDriver('ST'))
         self.connecting = False
