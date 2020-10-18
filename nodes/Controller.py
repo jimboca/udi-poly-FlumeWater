@@ -52,7 +52,7 @@ class Controller(Controller):
         self.setDriver('ST', 1)
         self.heartbeat(0)
         self.check_params()
-        self.set_debug_level(self.getDriver('GV1'))
+        #self.set_debug_level(self.getDriver('GV1'))
         self.discover()
 
     def shortPoll(self):
