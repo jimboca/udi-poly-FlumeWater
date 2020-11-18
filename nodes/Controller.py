@@ -37,15 +37,22 @@ class Controller(Controller):
         #self.poly.onConfig(self.process_config)
 
     def start(self):
-        serverdata = self.poly.get_server_data(check_profile=True)
+        # TODO: Currently fails on PGC
+        try:
+            serverdata = self.poly.get_server_data(check_profile=True)
+        except Exception as ex:
+            LOGGER.error('get_server_data failed, is this PGC?: {}'.format(ex))
+            serverdata = {}
+            serverdata['version'] = "FIXME_PGC"
+            self.poly.installprofile()
         LOGGER.info('Started Template NodeServer {}'.format(serverdata['version']))
-        LOGGER.debug('ST=%s',self.getDriver('ST'))
+        #LOGGER.debug('ST=%s',self.getDriver('ST'))
         self.connecting = False
         self.connected  = False
         self.setDriver('ST', 1)
         self.heartbeat(0)
         self.check_params()
-        self.set_debug_level(self.getDriver('GV1'))
+        #self.set_debug_level(self.getDriver('GV1'))
         self.discover()
 
     def shortPoll(self):
