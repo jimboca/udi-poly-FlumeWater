@@ -4,7 +4,7 @@
         <range uom="2" subset="0,1" />
     </editor>
     <editor id="GALLONS">
-        <range uom="69" min="0" max="2147483647"/>
+        <range uom="69" min="0" max="2147483647" prec=4/>
     </editor>
     <editor id="I_DEBUG">
       <range uom="25" subset="9,10,20,30,40,50" nls="CDM"/>

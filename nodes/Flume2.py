@@ -12,6 +12,10 @@ from requests import Session
 
 LOGGER = polyinterface.LOGGER
 
+def myfloat(value, prec=4):
+    """ round and return float """
+    return round(float(value), prec)
+
 class Flume2Node(polyinterface.Node):
 
     def __init__(self, controller, primary, address, name, device):
@@ -41,14 +45,19 @@ class Flume2Node(polyinterface.Node):
 
     def update(self):
         LOGGER.debug("Values={}".format(self.flume.values))
-        self.flume.update()
-        self.setDriver('GV1',self.flume.values['current_interval'])
-        self.setDriver('GV2',self.flume.values['last_60_min'])
-        self.setDriver('GV3',self.flume.values['last_24_hrs'])
-        self.setDriver('GV4',self.flume.values['today'])
-        self.setDriver('GV5',self.flume.values['last_30_days'])
-        self.setDriver('GV6',self.flume.values['week_to_date'])
-        self.setDriver('GV7',self.flume.values['month_to_date'])
+        try:
+            self.flume.update()
+        except (Exception) as err:
+            # e = sys.exc_info()[0]
+            LOGGER.error('Error updating device, will try again later: %s', err, exc_info=False)
+            return
+        self.setDriver('GV1',myfloat(self.flume.values['current_interval']))
+        self.setDriver('GV2',myfloat(self.flume.values['last_60_min']))
+        self.setDriver('GV3',myfloat(self.flume.values['last_24_hrs']))
+        self.setDriver('GV4',myfloat(self.flume.values['today']))
+        self.setDriver('GV5',myfloat(self.flume.values['last_30_days']))
+        self.setDriver('GV6',myfloat(self.flume.values['week_to_date']))
+        self.setDriver('GV7',myfloat(self.flume.values['month_to_date']))
 
     def query(self,command=None):
         self.update()
