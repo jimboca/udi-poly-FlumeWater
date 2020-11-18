@@ -12,7 +12,7 @@
     "testMode": false,
     "cloud": false,
     "prem": true,
-    "profile_version": "2.0.0",
+    "profile_version": "2.0.1",
     "credits": [
         {
             "title": "FlumeWater: a NodeServer for Flume Water Monitor Integration",
