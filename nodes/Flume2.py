@@ -29,7 +29,12 @@ class Flume2Node(polyinterface.Node):
     def start(self):
         self.setDriver('ST', 1)
         self.session = Session()
-        self.scan_interval = timedelta(minutes=self.controller.current_interval_minutes)
+        try:
+            self.scan_interval = timedelta(minutes=int(self.controller.current_interval_minutes))
+        except:
+            LOGGER.error("current_interval_minutes configuration parameter {} is not an integer? Using 1.".format(self.controller.current_interval_minutes))
+            self.scan_interval = timedelta(minutes=int(1))
+        LOGGER.info("Using scan interval: {}".format(self.scan_interval))
         self.flume = pyflume.FlumeData(
             self.controller.auth,
             self.device_id,

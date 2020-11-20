@@ -20,6 +20,8 @@ GV7 - Usage month to date
 
 ## Revision History
 
+- 2.0.3
+  - Proper error trapping for defining scan_interval
 - 2.0.2
   - Many fixes for PGC
 - 2.0.1
