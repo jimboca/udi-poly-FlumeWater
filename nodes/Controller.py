@@ -137,7 +137,7 @@ class Controller(Controller):
         default_client_secret = "YourClientSecret"
         default_current_interval_minutes = 5
         add_param = False
-        
+
         self.username = self.getCustomParam('username')
         if self.username is None:
             self.username = default_username
@@ -174,7 +174,7 @@ class Controller(Controller):
                 'client_id': self.client_id,
                 'client_secret': self.client_secret,
                 'current_interval_minutes': self.default_current_interval_minutes
-                });
+                })
 
         # Add a notice if they need to change the username/password from the default.
         if self.username == default_username or self.password == default_password or self.client_id == default_client_id or self.client_secret == default_client_secret:
