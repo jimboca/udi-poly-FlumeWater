@@ -8,7 +8,9 @@ Here is how you install this poly.
 
 Here is what is required to run this poly.
 
-## Using this Template
+## Revision History
 
-To use this template as the start of your nodeserver, just hit the + in the upper
-right corner of github select Import Repository and give the path to this repo as the source.
+2.0.1
+  - Fixed precision on values
+2.0.0
+  - Initial Version
