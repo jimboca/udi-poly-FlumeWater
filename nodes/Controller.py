@@ -136,35 +136,45 @@ class Controller(Controller):
         default_client_id = "YourClientId"
         default_client_secret = "YourClientSecret"
         default_current_interval_minutes = 5
-
+        add_param = False
+        
         self.username = self.getCustomParam('username')
         if self.username is None:
             self.username = default_username
             LOGGER.error('check_params: username not defined in customParams, please add it.  Using {}'.format(self.username))
-            self.addCustomParam({'username': self.username})
+            add_param = True
 
         self.password = self.getCustomParam('password')
         if self.password is None:
             self.password = default_password
             LOGGER.error('check_params: password not defined in customParams, please add it.  Using {}'.format(self.password))
-            self.addCustomParam({'password': self.password})
+            add_param = True
 
         self.client_id = self.getCustomParam('client_id')
         if self.client_id is None:
             self.client_id = default_client_id
             LOGGER.error('check_params: client_id not defined in customParams, please add it.  Using {}'.format(self.client_id))
-            self.addCustomParam({'client_id': self.client_id})
+            add_param = True
 
         self.client_secret = self.getCustomParam('client_secret')
         if self.client_secret is None:
             self.client_secret = default_client_secret
             LOGGER.error('check_params: client_secret not defined in customParams, please add it.  Using {}'.format(self.client_secret))
-            self.addCustomParam({'client_secret': self.client_secret})
+            add_param = True
 
         self.current_interval_minutes = self.getCustomParam('current_interval_minutes')
         if self.current_interval_minutes is None:
             self.current_interval_minutes = default_current_interval_minutes
-            self.addCustomParam({'current_interval_minutes': self.current_interval_minutes})
+            add_param = True
+
+        if (add_param):
+            self.addCustomParam({
+                'username': self.username,
+                'password': self.password,
+                'client_id': self.client_id,
+                'client_secret': self.client_secret,
+                'current_interval_minutes': self.default_current_interval_minutes
+                });
 
         # Add a notice if they need to change the username/password from the default.
         if self.username == default_username or self.password == default_password or self.client_id == default_client_id or self.client_secret == default_client_secret:
