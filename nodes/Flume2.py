@@ -14,6 +14,8 @@ LOGGER = polyinterface.LOGGER
 
 def myfloat(value, prec=4):
     """ round and return float """
+    if value is None:
+        return 0
     return round(float(value), prec)
 
 class Flume2Node(polyinterface.Node):
