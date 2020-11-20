@@ -2,7 +2,7 @@
 # Flume Water Polyglot Configuration
 
 
-You can find your Client ID and Client Secret under "API Access" on the <a href="https://portal.flumetech.com/#setting" target="_blank">Flume Settings Page</a>
+You can find your Client ID and Client Secret under "API Access" on the <a href="https://portal.flumetech.com/setting" target="_blank">Flume Settings Page</a>
 
 username: Your flume user id.
 password: Your flume password.

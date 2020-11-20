@@ -51,9 +51,11 @@ class Controller(Controller):
         self.connected  = False
         self.setDriver('ST', 1)
         self.heartbeat(0)
-        self.check_params()
+        self.ready = self.check_params()
         #self.set_debug_level(self.getDriver('GV1'))
-        self.discover()
+        if self.ready:
+            if self.connect():
+                self.discover()
 
     def shortPoll(self):
         for node in self.nodes:
@@ -168,34 +170,47 @@ class Controller(Controller):
         if self.username == default_username or self.password == default_password or self.client_id == default_client_id or self.client_secret == default_client_secret:
             # This doesn't pass a key to test the old way.
             msg = 'Please set your information in configuration page, and restart this nodeserver'
-            self.addNotice(msg)
+            self.addNotice({'config': msg})
             LOGGER.error(msg)
+            return False
         else:
-            self.connect()
+            return True
 
     def connect(self):
         self.connecting = True
         self.connected = False
         self.session = Session()
-        self.auth = pyflume.FlumeAuth(
-            self.username, self.password, self.client_id, self.client_secret, http_session=self.session
-        )
+        LOGGER.info("Connecting to Flume...")
+        try:
+            self.auth = pyflume.FlumeAuth(
+                self.username, self.password, self.client_id, self.client_secret, http_session=self.session
+            )
+            LOGGER.info("Flume Auth={}".format(self.auth))
+        except:
+            LOGGER.error("Authorization failed")
+            self.connecting = False
+            return False
         self.flume_devices = pyflume.FlumeDeviceList(self.auth)
         devices = self.flume_devices.get_devices()
-        self.conneccted = True
+        LOGGER.info("Connecting complete...")
+        self.connected = True
         self.connecting = False
+        return True
 
     def discover(self, *args, **kwargs):
-        for device in self.flume_devices.device_list:
-            if device[KEY_DEVICE_TYPE] <= 2:
-                ntype   = 'Flume{}Node'.format(device[KEY_DEVICE_TYPE])
-                address = id_to_address(device[KEY_DEVICE_ID])
-                name    = 'Flume {} {}'.format(TYPE_TO_NAME[device[KEY_DEVICE_TYPE]],device[KEY_DEVICE_ID])
-                # TODO: How to use ntype as the function to call?
-                if (device[KEY_DEVICE_TYPE] == 1):
-                    self.addNode(Flume1Node(self, self.address, address, name, device))
-                else:
-                    self.addNode(Flume2Node(self, self.address, address, name, device))
+        if self.connected:
+            for device in self.flume_devices.device_list:
+                if device[KEY_DEVICE_TYPE] <= 2:
+                    ntype   = 'Flume{}Node'.format(device[KEY_DEVICE_TYPE])
+                    address = id_to_address(device[KEY_DEVICE_ID])
+                    name    = 'Flume {} {}'.format(TYPE_TO_NAME[device[KEY_DEVICE_TYPE]],device[KEY_DEVICE_ID])
+                    # TODO: How to use ntype as the function to call?
+                    if (device[KEY_DEVICE_TYPE] == 1):
+                        self.addNode(Flume1Node(self, self.address, address, name, device))
+                    else:
+                        self.addNode(Flume2Node(self, self.address, address, name, device))
+        else:
+            LOGGER.error("Can not discover, not connected to Flume: connected={}".format(self.connected))
 
     def update_profile(self,command):
         LOGGER.info('update_profile:')
