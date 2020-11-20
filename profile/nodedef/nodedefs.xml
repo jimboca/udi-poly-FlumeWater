@@ -32,9 +32,6 @@
           <cmds>
               <sends />
               <accepts>
-                  <cmd id="DON" />
-                  <cmd id="DOF" />
-                  <cmd id="PING" />
               </accepts>
           </cmds>
       </nodeDef>
@@ -54,9 +51,6 @@
             <cmds>
                 <sends />
                 <accepts>
-                    <cmd id="DON" />
-                    <cmd id="DOF" />
-                    <cmd id="PING" />
                 </accepts>
             </cmds>
         </nodeDef>
