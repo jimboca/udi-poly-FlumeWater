@@ -173,7 +173,7 @@ class Controller(Controller):
                 'password': self.password,
                 'client_id': self.client_id,
                 'client_secret': self.client_secret,
-                'current_interval_minutes': self.default_current_interval_minutes
+                'current_interval_minutes': self.current_interval_minutes
                 })
 
         # Add a notice if they need to change the username/password from the default.
