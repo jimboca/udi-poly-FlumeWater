@@ -1,4 +1,4 @@
-# MyNodeServer
+# Flume Water Polyglot Node Server
 
 ## Installation
 
