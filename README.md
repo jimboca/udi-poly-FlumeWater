@@ -20,6 +20,8 @@ GV7 - Usage month to date
 
 ## Revision History
 
+- 2.0.4
+  - Minor profile fix for UD Mobile App.
 - 2.0.3
   - Proper error trapping for defining scan_interval
 - 2.0.2
