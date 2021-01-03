@@ -9,4 +9,7 @@
     <editor id="I_DEBUG">
       <range uom="25" subset="9,10,20,30,40,50" nls="CDM"/>
     </editor>
+    <editor id="I_AUTH">
+      <range uom="25" subset="0-3" nls="AUTH"/>
+    </editor>
 </editors>

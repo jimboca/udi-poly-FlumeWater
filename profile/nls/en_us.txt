@@ -7,6 +7,7 @@ CMD-ctl-UPDATE_PROFILE-NAME = Update Profile
 CMD-ctl-SET_DM-NAME = Set Logger Level
 ST-ctl-ST-NAME = NodeServer Online
 ST-ctl-GV1-NAME = Logger Level
+ST-ctl-GV2-NAME = Authorization Status
 
 # Debug/Logger Modes
 CDM-9 = Debug + Modules
@@ -15,6 +16,11 @@ CDM-20 = Info
 CDM-30 = Warning
 CDM-40 = Error
 CDM-50 = Critical
+
+AUTH-0 = Not Started
+AUTH-1 = Started
+AUTH-2 = Authorized
+AUTH-3 = Failed
 
 # Flume Hub
 ND-flume1-NAME = FlumeWater Hub

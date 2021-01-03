@@ -32,6 +32,7 @@ class Controller(Controller):
         super(Controller, self).__init__(polyglot)
         self.name = 'Flume Water Controller'
         self.hb = 0
+        self._mydrivers = {}
         # This can be used to call your function everytime the config changes
         # But currently it is called many times, so not using.
         #self.poly.onConfig(self.process_config)
@@ -47,9 +48,8 @@ class Controller(Controller):
             self.poly.installprofile()
         LOGGER.info('Started Template NodeServer {}'.format(serverdata['version']))
         #LOGGER.debug('ST=%s',self.getDriver('ST'))
-        self.connecting = False
-        self.connected  = False
-        self.setDriver('ST', 1)
+        self.set_driver('ST', 1)
+        self.set_driver('GV2', 0)
         self.heartbeat(0)
         self.ready = self.check_params()
         #self.set_debug_level(self.getDriver('GV1'))
@@ -106,7 +106,7 @@ class Controller(Controller):
         if level == 0:
             level = 30
         LOGGER.info('set_debug_level: Set GV1 to {}'.format(level))
-        self.setDriver('GV1', level)
+        self.set_driver('GV1', level)
         # 0=All 10=Debug are the same because 0 (NOTSET) doesn't show everything.
         if level <= 10:
             LOGGER.setLevel(logging.DEBUG)
@@ -187,28 +187,27 @@ class Controller(Controller):
             return True
 
     def connect(self):
-        self.connecting = True
-        self.connected = False
         self.session = Session()
         LOGGER.info("Connecting to Flume...")
+        self.set_driver('GV2',1)
         try:
             self.auth = pyflume.FlumeAuth(
                 self.username, self.password, self.client_id, self.client_secret, http_session=self.session
             )
+            self.set_driver('GV2',2)
             LOGGER.info("Flume Auth={}".format(self.auth))
         except:
+            self.set_driver('GV2',3)
             LOGGER.error("Authorization failed")
-            self.connecting = False
             return False
         self.flume_devices = pyflume.FlumeDeviceList(self.auth)
         devices = self.flume_devices.get_devices()
         LOGGER.info("Connecting complete...")
-        self.connected = True
-        self.connecting = False
         return True
 
     def discover(self, *args, **kwargs):
-        if self.connected:
+        cst = int(self.get_driver('GV2'))
+        if cst == 2:
             for device in self.flume_devices.device_list:
                 if device[KEY_DEVICE_TYPE] <= 2:
                     ntype   = 'Flume{}Node'.format(device[KEY_DEVICE_TYPE])
@@ -220,7 +219,23 @@ class Controller(Controller):
                     else:
                         self.addNode(Flume2Node(self, self.address, address, name, device))
         else:
-            LOGGER.error("Can not discover, not connected to Flume: connected={}".format(self.connected))
+            if cst == 0:
+                LOGGER.error("Can not discover, Connection has not started")
+            elif cst == 1:
+                LOGGER.error("Can not discover, Connection is started but not complete")
+            elif cst == 3:
+                LOGGER.error("Can not discover, Connection Failed")
+            else:
+                LOGGER.error("Can not discover, Unknown error")
+
+    def set_driver(self,drv,val):
+        self._mydrivers[drv] = val
+        self.setDriver(drv,val)
+
+    def get_driver(self,drv):
+        if drv in self._mydrivers:
+            return self._mydrivers[drv]
+        return self.getDriver(drv)
 
     def update_profile(self,command):
         LOGGER.info('update_profile:')
@@ -244,4 +259,5 @@ class Controller(Controller):
     drivers = [
         {'driver': 'ST',  'value': 1, 'uom':  2},
         {'driver': 'GV1', 'value': 10, 'uom': 25}, # Debug (Log) Mode, default=30=Warning
+        {'driver': 'GV2', 'value':  0, 'uom': 25}, # Authorization status
     ]

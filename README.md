@@ -20,6 +20,8 @@ GV7 - Usage month to date
 
 ## Revision History
 
+- 2.0.5:
+  - Added Authorization Status with driver
 - 2.0.4
   - Minor profile fix for UD Mobile App.
 - 2.0.3

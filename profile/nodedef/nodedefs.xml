@@ -5,6 +5,7 @@
         <editors />
         <sts>
 			<st id="ST" editor="bool" />
+      <st id="GV2" editor="I_AUTH" />
       <st id="GV1" editor="I_DEBUG" />
 		</sts>
         <cmds>
