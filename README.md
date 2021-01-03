@@ -22,6 +22,7 @@ GV7 - Usage month to date
 
 - 2.0.5:
   - Added Authorization Status with driver
+    - Users on PGC need to delete and re-add nodeserver to see it properly
 - 2.0.4
   - Minor profile fix for UD Mobile App.
 - 2.0.3

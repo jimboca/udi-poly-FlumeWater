@@ -198,7 +198,7 @@ class Controller(Controller):
             LOGGER.info("Flume Auth={}".format(self.auth))
         except:
             self.set_driver('GV2',3)
-            LOGGER.error("Authorization failed")
+            LOGGER.error("Authorization failed",exc_info=True)
             return False
         self.flume_devices = pyflume.FlumeDeviceList(self.auth)
         devices = self.flume_devices.get_devices()
