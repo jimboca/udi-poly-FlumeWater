@@ -198,13 +198,13 @@ class Controller(Controller):
             LOGGER.info("Flume Auth={}".format(self.auth))
         except Exception as ex:
             self.set_driver('GV2',3)
-            msg = 'Error from PyFlue: ' + str(ex)
+            msg = 'Error from PyFlue: {}'.format(ex))
             LOGGER.error(msg)
             self.addNotice({'auth': msg})
             return False
         except:
             self.set_driver('GV2',3)
-            msg = 'Unknown Error from PyFlue: ' + str(ex)
+            msg = 'Unknown Error from PyFlue: {}'.format(ex))
             LOGGER.error(msg)
             self.addNotice({'auth': msg})
             LOGGER.error(msg,exc_info=True)
