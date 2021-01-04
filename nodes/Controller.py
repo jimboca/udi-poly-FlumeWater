@@ -197,12 +197,17 @@ class Controller(Controller):
             self.set_driver('GV2',2)
             LOGGER.info("Flume Auth={}".format(self.auth))
         except Exception as ex:
-            LOGGER.error(ex)
             self.set_driver('GV2',3)
+            msg = 'Error from PyFlue: " + ex
+            LOGGER.error(msg)
+            self.addNotice({'auth': msg})
             return False
         except:
             self.set_driver('GV2',3)
-            LOGGER.error("Unknown error from pyflume.FlumeAuth: ",exc_info=True)
+            msg = 'Unknown Error from PyFlue: " + ex
+            LOGGER.error(msg)
+            self.addNotice({'auth': msg})
+            LOGGER.error(msg,exc_info=True)
             return False
         self.flume_devices = pyflume.FlumeDeviceList(self.auth)
         devices = self.flume_devices.get_devices()
