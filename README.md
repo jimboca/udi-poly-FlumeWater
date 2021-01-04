@@ -21,6 +21,7 @@ GV7 - Usage month to date
 ## Revision History
 
 - 2.0.5:
+  - Trap failure to authorize and print the error
   - Added Authorization Status with driver
     - Users on PGC need to delete and re-add nodeserver to see it properly
 - 2.0.4
