@@ -38,6 +38,7 @@ class Controller(Controller):
         #self.poly.onConfig(self.process_config)
 
     def start(self):
+        self.removeNoticesAll()
         # TODO: Currently fails on PGC
         try:
             serverdata = self.poly.get_server_data(check_profile=True)
