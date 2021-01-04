@@ -20,6 +20,8 @@ GV7 - Usage month to date
 
 ## Revision History
 
+- 2.0.6:
+  - Improve error trapping and show error message
 - 2.0.5:
   - Trap failure to authorize and print the error
   - Added Authorization Status with driver
