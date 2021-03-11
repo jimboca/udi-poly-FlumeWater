@@ -20,6 +20,8 @@ GV7 - Usage month to date
 
 ## Revision History
 
+- 2.0.7: 03/10/2021
+  - Add --upgrade to pip3 install
 - 2.0.6:
   - Improve error trapping and show error message
 - 2.0.5:
