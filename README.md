@@ -1,4 +1,4 @@
-# UDI Flume Water Polyglot V3 Node Server
+# UDI Flume Water Polyglot V2 Node Server
 
 ## Installation
 
